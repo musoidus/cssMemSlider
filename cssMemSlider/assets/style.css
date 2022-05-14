@@ -63,11 +63,10 @@ p {
 }
 
 img {
-  display: none;
   max-width: 100%;
-  height: auto;
+  width: 0;
+  height: 0;
   margin: 0 auto;
-  z-index: 1;
 }
 
 .controls-container {
@@ -111,53 +110,41 @@ img {
   display: none;
 }
 
-@keyframes slideIn {
+/*animation for img*/
+@keyframes hide {
   0% {
-    transform: translateY(-1200px) scale(0.7);
-    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
   }
-
-  80% {
-    transform: translateY(0px) scale(0.7);
-    opacity: 0.7;
+  50% {
+    transform: scaleX(-1);
   }
-
   100% {
-    transform: scale(1);
+    width: 0;
+    height: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes show {
+  0% {
+    transform: translateX(100%);
+    transform: translateX(100%);
+    width: 0;
+    height: 100%;
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    transform: translateX(0%);
+    width: 100%;
+    height: auto;
     opacity: 1;
   }
 }
 
-@keyframes hidden {
-  0% {
-    z-index: 2;
-    transform: translateX(0%);
-    transform: translateX(0%);
-  }
-  100% {
-    z-index: 2;
-    transform: translateX(100%);
-    transform: translateX(100%);
-  }
-}
-@keyframes slideOut {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  20% {
-    transform: translateY(0px) scale(0.7);
-    opacity: 0.7;
-  }
-
-  100% {
-    z-index: 2;
-    transform: translateY(700px) scale(0.7);
-    opacity: 0.7;
-  }
-}
-
+/*animation for text*/
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -199,8 +186,9 @@ img {
 #meme4:target ~ .meme-wrapper .img-container img[data-id='meme4'],
 #meme5:target ~ .meme-wrapper .img-container img[data-id='meme5'],
 #meme6:target ~ .meme-wrapper .img-container img[data-id='meme6'] {
-  display: block;
-  animation: slideIn 1s 1;
+  animation: show 1s forwards;
+  width: 100%;
+  height: auto;
 }
 
 #meme1:target ~ .meme-wrapper .description-container div[data-id='meme1'],
@@ -231,5 +219,5 @@ img {
 #meme4:not(:target) ~ .meme-wrapper .img-container img[data-id='meme4'],
 #meme5:not(:target) ~ .meme-wrapper .img-container img[data-id='meme5'],
 #meme6:not(:target) ~ .meme-wrapper .img-container img[data-id='meme6'] {
-  animation: hide 1s 1;
+  animation: hide 500ms forwards;
 }
