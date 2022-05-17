@@ -94,6 +94,11 @@ img {
     brightness(90%) contrast(79%);
 }
 
+.controls-container a:active {
+  filter: invert(15%) sepia(73%) saturate(5779%) hue-rotate(307deg)
+    brightness(111%) contrast(98%);
+}
+
 .description-container {
   display: flex;
   flex-direction: column;
